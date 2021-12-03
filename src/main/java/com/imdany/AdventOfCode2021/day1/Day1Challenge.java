@@ -1,5 +1,7 @@
 package com.imdany.AdventOfCode2021.day1;
 
+import com.imdany.AdventOfCode2021.Runner;
+import com.imdany.AdventOfCode2021.day2.Day2Challenge;
 import com.imdany.utils.ResourceReader;
 
 import java.io.FileNotFoundException;
@@ -7,16 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day1Challenge {
+public class Day1Challenge extends Runner {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("---Day 1 Challenge---");
-
-        Challenge1();
-        Challenge2();
+        Day1Challenge day1Challenge = new Day1Challenge();
+        day1Challenge.Run(1);
     }
 
-    private static void Challenge1() throws IOException {
+    @Override
+    public void Challenge1() throws IOException {
         System.out.println("--- + Challenge 1---");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day1/day1.txt");
         List<Integer> depthList = resourceReader.resourceToListInt();
@@ -25,7 +26,8 @@ public class Day1Challenge {
 
     }
 
-    private static void Challenge2() throws IOException {
+    @Override
+    public void Challenge2() throws IOException {
         System.out.println("--- + Challenge 2---");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day1/day1.txt");
         List<Integer> depthList = resourceReader.resourceToListInt();

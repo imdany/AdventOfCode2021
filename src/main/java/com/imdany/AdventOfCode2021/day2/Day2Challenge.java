@@ -1,21 +1,21 @@
 package com.imdany.AdventOfCode2021.day2;
 
+import com.imdany.AdventOfCode2021.Runner;
+import com.imdany.AdventOfCode2021.day3.Day3Challenge;
 import com.imdany.utils.ResourceReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class Day2Challenge {
+public class Day2Challenge extends Runner {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("---Day 2 Challenge---");
-
-        Challenge1();
-        Challenge2();
+        Day2Challenge day2Challenge = new Day2Challenge();
+        day2Challenge.Run(2);
     }
-
-    private static void Challenge1() throws IOException {
+    @Override
+    public void Challenge1() throws IOException {
         System.out.println("--- + Challenge 1---");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day2/1.txt");
         List<String> movementList = resourceReader.resourceToListString();
@@ -47,7 +47,8 @@ public class Day2Challenge {
         System.out.println("Result: " + (xPosition * yPosition));
     }
 
-    private static void Challenge2() throws IOException {
+    @Override
+    public  void Challenge2() throws IOException {
         System.out.println("--- + Challenge 2---");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day2/1.txt");
         List<String> movementList = resourceReader.resourceToListString();
@@ -80,7 +81,6 @@ public class Day2Challenge {
         System.out.println("Final AIM: " + aim);
         System.out.println("Final Depth: " + yPosition);
         System.out.println("Result: " + (xPosition * yPosition));
-
     }
 
 }
