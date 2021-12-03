@@ -1,22 +1,22 @@
 package com.imdany.AdventOfCode2021.day2;
 
 import com.imdany.AdventOfCode2021.Runner;
-import com.imdany.AdventOfCode2021.day3.Day3Challenge;
 import com.imdany.utils.ResourceReader;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 public class Day2Challenge extends Runner {
 
     public static void main(String[] args) throws IOException {
         Day2Challenge day2Challenge = new Day2Challenge();
-        day2Challenge.Run(2);
+        day2Challenge.run();
     }
     @Override
     public void Challenge1() throws IOException {
-        System.out.println("--- + Challenge 1---");
+        log.info("Challenge 1");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day2/1.txt");
         List<String> movementList = resourceReader.resourceToListString();
 
@@ -42,14 +42,14 @@ public class Day2Challenge extends Runner {
             }
         }
 
-        System.out.println("Final Horizontal: " + xPosition);
-        System.out.println("Final Depth: " + yPosition);
-        System.out.println("Result: " + (xPosition * yPosition));
+        log.info("Final Horizontal: " + xPosition);
+        log.info("Final Depth: " + yPosition);
+        log.info("Solution: " + (xPosition * yPosition));
     }
 
     @Override
     public  void Challenge2() throws IOException {
-        System.out.println("--- + Challenge 2---");
+        log.info("Challenge 2");
         ResourceReader resourceReader = new ResourceReader("/AdventOfCode2021/day2/1.txt");
         List<String> movementList = resourceReader.resourceToListString();
 
@@ -77,10 +77,10 @@ public class Day2Challenge extends Runner {
             }
         }
 
-        System.out.println("Final Horizontal: " + xPosition);
-        System.out.println("Final AIM: " + aim);
-        System.out.println("Final Depth: " + yPosition);
-        System.out.println("Result: " + (xPosition * yPosition));
+        log.info("Final Horizontal: " + xPosition);
+        log.info("Final AIM: " + aim);
+        log.info("Final Depth: " + yPosition);
+        log.info("Solution: " + (xPosition * yPosition));
     }
 
 }

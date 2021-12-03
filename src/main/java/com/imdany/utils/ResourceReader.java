@@ -1,10 +1,13 @@
 package com.imdany.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class ResourceReader {
 
     private final String resourceName;
@@ -17,7 +20,7 @@ public class ResourceReader {
         this.resource = this.getClass().getResource(resourceName);
         this.path = this.resource.getPath();
 
-        System.out.println("Getting resouce: " + this.path);
+//        System.out.println("Getting resouce: " + this.path);
         InputStream inputStream = new FileInputStream(this.path);
         InputStreamReader streamReader = new InputStreamReader(inputStream);
         this.reader = new BufferedReader(streamReader);
@@ -29,7 +32,7 @@ public class ResourceReader {
         while ((line = reader.readLine()) != null) {
             data.add(Integer.valueOf(line));
         }
-        System.out.println("Elements loaded: " + data.size());
+//        System.out.println("Elements loaded: " + data.size());
         return data;
     }
 
@@ -39,7 +42,7 @@ public class ResourceReader {
         while ((line = reader.readLine()) != null) {
             data.add(line);
         }
-        System.out.println("Elements loaded: " + data.size());
+//        System.out.println("Elements loaded: " + data.size());
         return data;
     }
 }

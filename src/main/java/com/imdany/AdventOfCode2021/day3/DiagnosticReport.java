@@ -1,8 +1,11 @@
 package com.imdany.AdventOfCode2021.day3;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class DiagnosticReport {
 
     private long gammaRate = 0;
@@ -29,15 +32,15 @@ public class DiagnosticReport {
     }
 
     public void getReportPowerConsumption(){
-        System.out.println("Gamma Rate: " + this.gammaRate);
-        System.out.println("Epsilon Rate: " + this.epsilonRate);
-        System.out.println("Power Cosumption: " + this.powerConsumption);
+        log.info("Gamma Rate: " + this.gammaRate);
+        log.info("Epsilon Rate: " + this.epsilonRate);
+        log.info("Power Cosumption: " + this.powerConsumption);
     }
 
     public void getReportLifeSupport() {
-        System.out.println("O2: " + this.o2);
-        System.out.println("CO2: " + this.co2);
-        System.out.println("Life Support: " + this.lifeSupport);
+        log.info("O2: " + this.o2);
+        log.info("CO2: " + this.co2);
+        log.info("Life Support: " + this.lifeSupport);
     }
 
     public void processPowerCosumption(){
