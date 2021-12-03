@@ -1,5 +1,4 @@
 # Advent of Code 2021
--------
 
 Solutions using Java. This code doesn't pretend to be perfect or efficient. 
 
