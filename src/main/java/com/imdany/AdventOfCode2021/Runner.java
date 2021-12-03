@@ -9,12 +9,14 @@ public abstract class Runner {
 
     public void run() throws IOException {
         long startTime = System.currentTimeMillis();
-
         this.Challenge1();
-        this.Challenge2();
-
         long endTime = System.currentTimeMillis();
-        log.info("Processing Time: " + (endTime-startTime) + " ms");
+        log.info("Timing 1: " + (endTime-startTime) + " ms");
+
+        long startTime2 = System.currentTimeMillis();
+        this.Challenge2();
+        long endTime2 = System.currentTimeMillis();
+        log.info("Timing 2: " + (endTime2-startTime2) + " ms");
     }
 
     public abstract void Challenge1() throws IOException;
