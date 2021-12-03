@@ -5,9 +5,9 @@ Solutions using Java. This code doesn't pretend to be perfect or efficient.
 I just want to practice a little bit of Java, some design patterns and have fun! :)
 
 ## CI / CD
-Using Github actions for running the code.
+Using Github actions for running the code. Check the logs of the "Run" step.
 
-![example workflow](https://github.com/imdany/AdventOfCode2021/actions/workflows/maven.yml/badge.svg)
+[![workflow](https://github.com/imdany/AdventOfCode2021/actions/workflows/maven.yml/badge.svg)](https://github.com/imdany/AdventOfCode2021/actions/workflows/maven.yml)
 
 ## Timings 
 
