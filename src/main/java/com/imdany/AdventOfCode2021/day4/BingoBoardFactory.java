@@ -14,19 +14,36 @@ public class BingoBoardFactory {
 
         int currentCount = 0;
         List<String> preboard = new ArrayList<>();
-        for (int i = 0; i<5; i++) {
-//            for (int i = 0; i<all.size(); i++) {
-            preboard.add(all.get(i));
-            currentCount ++;
+        for (int i = 0; i<all.size(); i++) {
+            if(!all.get(i).equals("")) {
+                preboard.add(all.get(i));
+                currentCount++;
+                if (currentCount == 5) {
+                    boards.add(createBoard(preboard));
+                    preboard = new ArrayList<>();
+                    currentCount = 0;
+                }
+            }
         }
-        boards.add(createBoard(preboard));
+
         return boards;
     }
 
     public static BingoBoard createBoard(List<String> lines) {
-        int[][] pre_board = null;
+        int[][] preBoard = new int[BingoConstants.BINGO_BOARD_SIZE][BingoConstants.BINGO_BOARD_SIZE];
 
-        return new BingoBoard(pre_board);
+        for (int y = 0; y<BingoConstants.BINGO_BOARD_SIZE; y++) {
+            String[] lValues = lines.get(y).split(" ");
+            int xReal = 0;
+            for (int x = 0; x< lValues.length;  x++) {
+                if(lValues[x] != "") {
+                    preBoard[xReal][y] = Integer.valueOf(lValues[x]);
+                    xReal++;
+                }
+            }
+        }
+
+        return new BingoBoard(preBoard);
     }
 
 }

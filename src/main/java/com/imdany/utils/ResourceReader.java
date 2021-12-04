@@ -32,9 +32,21 @@ public class ResourceReader {
         while ((line = reader.readLine()) != null) {
             data.add(Integer.valueOf(line));
         }
-//        System.out.println("Elements loaded: " + data.size());
         return data;
     }
+
+    public List<Integer> lineToIntegerList() throws IOException {
+        List<Integer> data = new ArrayList<Integer>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] values = line.split(",");
+            for (String i: values) {
+                data.add(Integer.valueOf(i));
+            }
+        }
+        return data;
+    }
+
 
     public List<String> resourceToListString() throws IOException {
         List<String> data = new ArrayList<String>();

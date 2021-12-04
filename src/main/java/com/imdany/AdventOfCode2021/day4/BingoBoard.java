@@ -1,5 +1,8 @@
 package com.imdany.AdventOfCode2021.day4;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class BingoBoard {
 
     private int[][] board;
@@ -8,9 +11,11 @@ public class BingoBoard {
     private int boardSize = BingoConstants.BINGO_BOARD_SIZE;
 
     private boolean isWinner = false;
+    private boolean isPlayable = true;
 
     public BingoBoard(int[][] board){
         this.board = board;
+        this.checkedBoard = new int[this.boardSize][this.boardSize];
     }
 
     public boolean getIsWinner(){
@@ -18,17 +23,19 @@ public class BingoBoard {
     }
 
     public void addPosition(int p) {
-        for(int i = 0; i<this.boardSize; i++){
-            for(int j = 0; j<this.boardSize; j++){
-                if(this.board[i][j] == p) {
-                    this.checkedBoard[i][j] = 1;
+        if(isPlayable) {
+            for(int i = 0; i<this.boardSize; i++){
+                for(int j = 0; j<this.boardSize; j++){
+                    if(this.board[i][j] == p) {
+                        this.checkedBoard[i][j] = 1;
+                    }
                 }
             }
+            this.checkWin(p);
         }
-        this.checkWin();
     }
 
-    public void checkWin(){
+    public void checkWin(int p){
         for(int i = 0; i<this.boardSize; i++) {
             int rowCount = 0;
             int columnCount = 0;
@@ -38,8 +45,27 @@ public class BingoBoard {
             }
             if(rowCount == this.boardSize ||columnCount == this.boardSize) {
                 this.isWinner = true;
+                this.isPlayable = false;
+                log.info("We have a winner!");
+                this.calculateScore(p);
             }
         }
+    }
+
+    public void calculateScore(int p){
+        // Get unmarked numbers
+        int preScore = 0;
+        for(int i = 0; i<this.boardSize; i++) {
+            for(int j = 0; j<this.boardSize; j++) {
+                if(this.checkedBoard[i][j] == 0){
+                    preScore = this.board[i][j] + preScore;
+                }
+            }
+        }
+        int finalScore = preScore * p;
+        log.info("Play: "+ p);
+        log.info("Unmarked: "+ preScore);
+        log.info("Score: "+ finalScore);
     }
 
 }

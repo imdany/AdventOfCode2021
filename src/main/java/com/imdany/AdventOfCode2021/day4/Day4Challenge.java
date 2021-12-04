@@ -19,21 +19,28 @@ public class Day4Challenge extends Runner {
     @Override
     public void Challenge1() throws IOException {
         log.info("Challenge 1");
-        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day4/ex1.txt");
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day4/input1.txt");
         List<String> listBoards = resourceReader1.resourceToListString();
 
-        ResourceReader resourceReader2 = new ResourceReader("/AdventOfCode2021/day4/ex2.txt");
-        List<String> playedValues = resourceReader1.resourceToListString();
+        ResourceReader resourceReader2 = new ResourceReader("/AdventOfCode2021/day4/input2.txt");
+        List<Integer> playedValues = resourceReader2.lineToIntegerList();
 
-        System.out.println(listBoards);
-        System.out.println(playedValues);
-
-        List<BingoBoard> boards = BingoBoardFactory.processList(listBoards);
-        System.out.println(boards);
+        BingoPlayer bp = new BingoPlayer(listBoards, playedValues);
+        bp.playStrategy1();
+        //6592
     }
 
     @Override
     public void Challenge2() throws IOException {
+        log.info("Challenge 2");
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day4/input1.txt");
+        List<String> listBoards = resourceReader1.resourceToListString();
 
+        ResourceReader resourceReader2 = new ResourceReader("/AdventOfCode2021/day4/input2.txt");
+        List<Integer> playedValues = resourceReader2.lineToIntegerList();
+
+        BingoPlayer bp = new BingoPlayer(listBoards, playedValues);
+        bp.playStrategy2();
+        // 31755
     }
 }
