@@ -16,5 +16,5 @@ Using Github actions for running the code. Check the logs of the "Run" step.
 | [day 1](https://adventofcode.com/2021/day/1)   | [`  4ms`] | [`  4ms`] | [`  8ms`]  |
 | [day 2](https://adventofcode.com/2021/day/2)   | [`  7ms`] | [`  5ms`] | [`  12ms`] |
 | [day 3](https://adventofcode.com/2021/day/3)   | [`  8ms`] | [`  5ms`] | [`  13ms`] |
-| [day 3](https://adventofcode.com/2021/day/4)   | [`  15ms`] | [`  34ms`] | [`  49ms`] |
+| [day 4](https://adventofcode.com/2021/day/4)   | [`  15ms`] | [`  34ms`] | [`  49ms`] |
 
