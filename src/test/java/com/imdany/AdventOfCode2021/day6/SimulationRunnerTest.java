@@ -107,28 +107,4 @@ public class SimulationRunnerTest {
         Assertions.assertArrayEquals(new long[]{3,5,3,2,2,1,5,1,4}, l18);
     }
 
-    @Test
-    public void challenge1Test() {
-        SimulationRunner sr = new SimulationRunner(listInputs);
-
-        sr.playDays(18);
-        System.out.println(sr.getStatus());
-        assert(sr.getStatus() == 26L);
-
-        SimulationRunner sr2 = new SimulationRunner(listInputs);
-        sr2.playDays(80);
-        System.out.println(sr2.getStatus());
-        assert(sr2.getStatus() == 5934L);
-    }
-
-    @Test
-    public void challenge2Test() {
-        SimulationRunner sr = new SimulationRunner(listInputs);
-
-        sr.playDays(256);
-        System.out.println(sr.getStatus());
-        assert(sr.getStatus() == 26984457539L);
-
-    }
-
 }

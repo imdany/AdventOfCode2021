@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class PositionCheckerTest {
+public class Challenge5Test {
 
     ResourceReader resourceReader1;
     List<String> listInputs;

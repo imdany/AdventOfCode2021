@@ -46,7 +46,7 @@ public class BingoBoard {
             if(rowCount == this.boardSize ||columnCount == this.boardSize) {
                 this.isWinner = true;
                 this.isPlayable = false;
-                log.info("We have a winner!");
+                log.trace("We have a winner!");
                 this.calculateScore(p);
             }
         }
@@ -63,9 +63,9 @@ public class BingoBoard {
             }
         }
         int finalScore = preScore * p;
-        log.info("Play: "+ p);
-        log.info("Unmarked: "+ preScore);
-        log.info("Score: "+ finalScore);
+        log.trace("Play: "+ p);
+        log.trace("Unmarked: "+ preScore);
+        log.trace("Score: "+ finalScore);
     }
 
 }

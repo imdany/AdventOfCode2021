@@ -11,8 +11,8 @@ import java.util.List;
 public class Day2Challenge extends Runner {
 
     public static void main(String[] args) throws IOException {
-        Day2Challenge day2Challenge = new Day2Challenge();
-        day2Challenge.run();
+        Day2Challenge challenge = new Day2Challenge();
+        challenge.run(challenge.getClass().getName());
     }
     @Override
     public void Challenge1() throws IOException {

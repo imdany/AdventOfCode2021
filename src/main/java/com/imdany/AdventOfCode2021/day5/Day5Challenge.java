@@ -11,24 +11,23 @@ import java.util.List;
 @Slf4j
 public class Day5Challenge extends Runner {
 
+    String name = this.getClass().getName();
+
     public static void main(String[] args) throws IOException {
-        Day5Challenge day5Challenge = new Day5Challenge();
-        day5Challenge.run();
+        Day5Challenge challenge = new Day5Challenge();
+        challenge.run(challenge.getClass().getName());
     }
 
     @Override
     public void Challenge1() throws IOException {
-//        log.info("Challenge 1");
-//        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day5/input1.txt");
-//        List<String> listInputs = resourceReader1.resourceToListString();
-//
-//        System.out.println(listInputs);
-//
-//        PositionChecker pc = new PositionChecker(listInputs, false);
-//
-//        pc.processLines();
-//        pc.checkDiagram();
-        //6005
+        log.info("Challenge 1");
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day5/input1.txt");
+        List<String> listInputs = resourceReader1.resourceToListString();
+
+        PositionChecker pc = new PositionChecker(listInputs, false);
+
+        pc.processLines();
+        pc.checkDiagram();
     }
 
     @Override
@@ -36,8 +35,6 @@ public class Day5Challenge extends Runner {
         log.info("Challenge 2");
         ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day5/input1.txt");
         List<String> listInputs = resourceReader1.resourceToListString();
-
-        System.out.println(listInputs);
 
         PositionChecker pc = new PositionChecker(listInputs, true);
 

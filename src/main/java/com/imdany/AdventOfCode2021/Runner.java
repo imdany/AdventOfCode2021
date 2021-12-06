@@ -7,7 +7,9 @@ import java.io.IOException;
 @Slf4j
 public abstract class Runner {
 
-    public void run() throws IOException {
+    public void run(String name) throws IOException {
+        log.info("Running: {}", name);
+
         long startTime = System.currentTimeMillis();
         this.Challenge1();
         long endTime = System.currentTimeMillis();
