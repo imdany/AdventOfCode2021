@@ -25,6 +25,9 @@ public class LanternfishTest {
         assert (l.advanceDay() == false);
         assert (l.cycle ==1);
 
+        assert (l.advanceDay() == false);
+        assert (l.cycle ==0);
+
         assert (l.advanceDay() == true);
         assert (l.cycle ==6);
     }
