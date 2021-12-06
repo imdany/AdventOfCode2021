@@ -52,56 +52,55 @@ public class PositionFactory {
         return elements;
     }
 
-    public List<Position> createLine(String line){
-        String[] positions = line.replace(" ", "").split("->");
-        Position startP = this.createPosition(positions[0]);
-        Position endP = this.createPosition(positions[1]);
-
-        List<Position> positionsList = new ArrayList<>();
-        // Reorder points so start X and Start Y are always top left
-        int x1 = startP.x;
-        int x2 = endP.x;
-        int y1 = startP.y;
-        int y2 = endP.y;
-
+    public List<Position> processStraightLines(Position startP, Position endP) {
         int startX = 0;
         int endX = 0;
         int startY = 0;
         int endY = 0;
 
-        if (x1 == x2 || y1 == y2) {
-            if ( x1 <= x2) {
-                startX = x1;
-                endX = x2;
-            } else {
-                startX = x2;
-                endX = x1;
-            }
-            if(y1<=y2) {
-                startY = y1;
-                endY = y2;
-            } else {
-                startY = y2;
-                endY = y1;
-            }
-            positionsList = this.createIntermidiatePositions(new Position(startX, startY), new Position(endX, endY), false);
+        if ( startP.x <= endP.x) {
+            startX = startP.x;
+            endX = endP.x;
         } else {
-            if(y1 > y2) {
-                if(x1 < x2) {
-                    positionsList = this.createIntermidiatePositions(startP, endP, true); //
-                } else {
-                    positionsList = this.createIntermidiatePositions(endP,startP, false); //
-                }
-            }else{
-                if(x1 < x2) {
-                    positionsList = this.createIntermidiatePositions(startP, endP , false); //
-                } else {
-                    positionsList = this.createIntermidiatePositions(endP, startP, true); //
-                }
+            startX = endP.x;
+            endX = startP.x;
+        }
+        if(startP.y<=endP.y) {
+            startY = startP.y;
+            endY = endP.y;
+        } else {
+            startY = endP.y;
+            endY = startP.y;
+        }
+        return this.createIntermidiatePositions(new Position(startX, startY), new Position(endX, endY), false);
+    }
 
+    public List<Position> processDiagonalLines(Position startP, Position endP) {
+        if(startP.y > endP.y) {
+            if(startP.x < endP.x) {
+                return this.createIntermidiatePositions(startP, endP, true);
+            } else {
+                return this.createIntermidiatePositions(endP,startP, false);
+            }
+        }else{
+            if(startP.x < endP.x) {
+                return this.createIntermidiatePositions(startP, endP , false);
+            } else {
+                return this.createIntermidiatePositions(endP, startP, true);
             }
         }
-        return positionsList;
+    }
+
+    public List<Position> createLine(String line){
+        String[] positions = line.replace(" ", "").split("->");
+        Position startP = this.createPosition(positions[0]);
+        Position endP = this.createPosition(positions[1]);
+
+        if (startP.x == endP.x || startP.y == endP.y) {
+            return this.processStraightLines(startP, endP);
+        } else {
+            return this.processDiagonalLines(startP, endP);
+        }
     }
 
 }
