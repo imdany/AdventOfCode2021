@@ -1,6 +1,5 @@
 package com.imdany.AdventOfCode2021.day6;
 
-import com.imdany.AdventOfCode2021.day5.PositionChecker;
 import com.imdany.utils.ResourceReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,12 +36,23 @@ public class SimulationRunnerTest {
     }
 
     @Test
+    public void playIndividualDay(){
+        SimulationRunner sr = new SimulationRunner(Arrays.asList(8));
+        assert(sr.getCurrentDay() == 0);
+
+        long[] l1 = sr.play();
+        System.out.println(Arrays.toString(l1));
+        Assertions.assertArrayEquals(l1, new long[]{0,0,0,0,0,0,0,1,0});
+
+    }
+
+    @Test
     public void creates_initial_list(){
         SimulationRunner sr = new SimulationRunner(listInputs);
         assert(sr.getStatus() == 5);
 
-        List<Integer> l1 = sr.getCurrentStatusOfLantterfish();
-        Assertions.assertIterableEquals(l1, Arrays.asList(3, 4, 3, 1, 2));
+        long[] l1 = sr.getCurrentStatusOfLantterfish();
+        Assertions.assertArrayEquals(l1, new long[]{0,1,1,2,1,0,0,0,0});
 
     }
 
@@ -51,42 +61,72 @@ public class SimulationRunnerTest {
         SimulationRunner sr = new SimulationRunner(listInputs);
         assert(sr.getStatus() == 5);
 
-        List<Integer> l1 = sr.play();
-        Assertions.assertIterableEquals(l1, Arrays.asList(2, 3, 2, 0, 1));
+        long[] l1 = sr.play();
+        Assertions.assertArrayEquals(new long[]{1,1,2,1,0,0,0,0,0}, l1);
 
-        List<Integer> l2 = sr.play();
-        Assertions.assertIterableEquals(l2, Arrays.asList(1, 2, 1, 6, 0, 8));
+        long[]  l2 = sr.play();
+        Assertions.assertArrayEquals(new long[]{1,2,1,0,0,0,1,0,1}, l2);
 
-        List<Integer> l3 = sr.play();
-        Assertions.assertIterableEquals(l3, Arrays.asList(0, 1, 0, 5, 6, 7, 8));
-
-        List<Integer> l4 = sr.play();
-        Assertions.assertIterableEquals(l4, Arrays.asList(6, 0, 6, 4, 5, 6, 7, 8, 8));
-
-        List<Integer> l5 = sr.play();
-        Assertions.assertIterableEquals(l5, Arrays.asList(5,6,5,3,4,5,6,7,7,8));
+        long[] l3 = sr.play();
+        Assertions.assertArrayEquals(new long[]{2,1,0,0,0,1,1,1,1}, l3);
 
 
-        List<Integer> l6 = sr.play();
-        Assertions.assertIterableEquals(l6, Arrays.asList(4,5,4,2,3,4,5,6,6,7));
+        long[] l4 = sr.play();
+        Assertions.assertArrayEquals(new long[]{1,0,0,0,1,1,3,1,2}, l4);
+
+        long[]  l5 = sr.play();
+        Assertions.assertArrayEquals(new long[]{0,0,0,1,1,3,2,2,1}, l5);
+
+        long[]  l6 = sr.play();
+        Assertions.assertArrayEquals(new long[]{0,0,1,1,3,2,2,1,0}, l6);
+
+        long[]  l7 = sr.play();
+        Assertions.assertArrayEquals(new long[]{0,1,1,3,2,2,1,0,0}, l7);
+
+        long[]  l8 = sr.play();
+        Assertions.assertArrayEquals(new long[]{1,1,3,2,2,1,0,0,0}, l8);
+
+        long[]  l9 = sr.play();
+        Assertions.assertArrayEquals(new long[]{1,3,2,2,1,0,1,0,1}, l9);
+
+
+        long[]  l10 = sr.play();
+        Assertions.assertArrayEquals(new long[]{3,2,2,1,0,1,1,1,1}, l10);
+
+        long[]  l11 = sr.play();
+        Assertions.assertArrayEquals(new long[]{2,2,1,0,1,1,4,1,3}, l11);
+
+        long[]  l12 = sr.play();
+        long[]  l13 = sr.play();
+        long[]  l14 = sr.play();
+        long[]  l15 = sr.play();
+        long[]  l16 = sr.play();
+        long[]  l17 = sr.play();
+        long[]  l18 = sr.play();
+
+        Assertions.assertArrayEquals(new long[]{3,5,3,2,2,1,5,1,4}, l18);
     }
 
     @Test
     public void challenge1Test() {
         SimulationRunner sr = new SimulationRunner(listInputs);
 
-        sr.playDays(19);
+        sr.playDays(18);
+        System.out.println(sr.getStatus());
         assert(sr.getStatus() == 26L);
 
-        sr.playDays(80-18);
-        assert(sr.getStatus() == 5934L);
+        SimulationRunner sr2 = new SimulationRunner(listInputs);
+        sr2.playDays(80);
+        System.out.println(sr2.getStatus());
+        assert(sr2.getStatus() == 5934L);
     }
 
     @Test
     public void challenge2Test() {
         SimulationRunner sr = new SimulationRunner(listInputs);
 
-        sr.playDays(257);
+        sr.playDays(256);
+        System.out.println(sr.getStatus());
         assert(sr.getStatus() == 26984457539L);
 
     }

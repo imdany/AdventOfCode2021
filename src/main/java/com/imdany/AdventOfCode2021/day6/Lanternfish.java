@@ -3,30 +3,19 @@ package com.imdany.AdventOfCode2021.day6;
 public class Lanternfish {
 
     int cycle;
-    boolean isReady;
+    long population;
 
-
-    Lanternfish(int currentCycle){
+    Lanternfish(int currentCycle, long population){
         this.cycle = currentCycle;
-        this.isReady = false;
+        this.population = population;
     }
 
-    public void resetCycle(){
-        this.cycle = 6;
+    public void add(long individuals) {
+        this.population = this.population + individuals;
     }
 
-    public boolean createNew(){
-        return true;
-    }
-
-    public boolean advanceDay(){
-        this.cycle--;
-        if(this.cycle == -1 ) {
-            this.resetCycle();
-            return this.createNew();
-        } else {
-            return false;
-        }
+    public void remove(long individuals) {
+        this.population = this.population - individuals;
     }
 
 }

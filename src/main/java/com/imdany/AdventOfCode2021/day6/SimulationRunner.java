@@ -8,23 +8,41 @@ import java.util.List;
 @Slf4j
 public class SimulationRunner {
 
-    private int status;
+    private long status;
     private int currentDay;
     private List<Lanternfish> lanternfishList;
 
+
     SimulationRunner(List<Integer> initialStatus) {
-        this.lanternfishList = this.createInitialStatus(initialStatus);
+
+        lanternfishList = new ArrayList<>();
+
+        lanternfishList.add(new Lanternfish(0, 0L));
+        lanternfishList.add(new Lanternfish(1, 0L));
+        lanternfishList.add(new Lanternfish(2, 0L));
+        lanternfishList.add(new Lanternfish(3, 0L));
+        lanternfishList.add(new Lanternfish(4, 0L));
+        lanternfishList.add(new Lanternfish(5, 0L));
+        lanternfishList.add(new Lanternfish(6, 0L));
+        lanternfishList.add(new Lanternfish(7, 0L));
+        lanternfishList.add(new Lanternfish(8, 0L));
+
+        this.createInitialStatus(initialStatus);
         this.currentDay = 0;
-        this.status = this.lanternfishList.size();
-//        this.getCurrentStatusOfLantterfish();
+
+        this.status = 0L;
+        for (Lanternfish f: this.lanternfishList) {
+            this.status = this.status + f.population;
+        }
+
+        this.getCurrentStatusOfLantterfish();
     }
 
-    public List<Lanternfish> createInitialStatus(List<Integer> initialStatus){
+    public void createInitialStatus(List<Integer> initialStatus){
         List<Lanternfish> newList = new ArrayList<>();
         for(Integer e: initialStatus) {
-            newList.add(new Lanternfish(e));
+            lanternfishList.get(e).add(1);
         }
-        return newList;
     }
 
     public int getCurrentDay(){
@@ -35,29 +53,43 @@ public class SimulationRunner {
         return this.status;
     }
 
-    public List<Integer> play() {
-        List<Lanternfish> newFish = new ArrayList<>();
-        for(Lanternfish f: this.lanternfishList){
-            if (f.advanceDay()){
-                newFish.add(new Lanternfish(8));
+    public long[] play() {
+        // Get a copy of the list for doing the modifications
+        List<Lanternfish> tmpList = new ArrayList<>();
+        this.copyList(this.lanternfishList, tmpList);
+        for (int i = 8; i>-1; i--) {
+            Lanternfish current = this.lanternfishList.get(i);
+            long tmpPopulation = current.population;
+            // Remove population and add it to next element
+            tmpList.get(i).remove(tmpPopulation);
+            if(i ==0) {
+                // New fishes
+                tmpList.get(6).add(tmpPopulation);
+                tmpList.get(8).add(tmpPopulation);
+            }else {
+                tmpList.get(i-1).add(tmpPopulation);
             }
         }
-        this.status = this.lanternfishList.size();
-        this.currentDay++;
+        this.copyList(tmpList, this.lanternfishList);
 
-        // Add new fish to global list
-        this.lanternfishList.addAll(newFish);
+        this.lanternfishList = tmpList;
+        this.currentDay++;
 
         //Report final status of the day
         return this.getCurrentStatusOfLantterfish();
     }
 
-    public List<Integer> getCurrentStatusOfLantterfish(){
-        List<Integer> cycleList = new ArrayList<>();
+    public long[] getCurrentStatusOfLantterfish(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Number of Lanternfish: ");
+        long[] cycleList = new long[9];
+        this.status = 0L;
         for(Lanternfish f: this.lanternfishList){
-            cycleList.add(f.cycle);
+            this.status = this.status + f.population;
+            cycleList[f.cycle] = f.population;
+            sb.append("(" + f.cycle + " - P:    " + f.population +")" );
         }
-//        log.info("After {} day: {}", this.currentDay, cycleList);
+        //log.info(sb.toString());
         return cycleList;
     }
 
@@ -65,6 +97,13 @@ public class SimulationRunner {
         log.trace("Advancing {} days", numberDays);
         for (int i = 0; i<numberDays; i++) {
             this.play();
+        }
+    }
+
+    public void copyList(List<Lanternfish> src, List<Lanternfish> dest) {
+        dest.clear();
+        for(int i=0;i<src.size();i++){
+            dest.add((new Lanternfish(src.get(i).cycle, src.get(i).population)));
         }
     }
 

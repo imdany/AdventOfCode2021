@@ -24,7 +24,7 @@ public class Day6Challenge extends Runner {
         List<Integer> listInputs = resourceReader1.lineToIntegerList();
 
         SimulationRunner sr = new SimulationRunner(listInputs);
-        sr.playDays(81);
+        sr.playDays(80);
 
         log.info("Result after 80 days: {}", sr.getStatus());
     }
@@ -37,7 +37,7 @@ public class Day6Challenge extends Runner {
         List<Integer> listInputs = resourceReader1.lineToIntegerList();
 
         SimulationRunner sr = new SimulationRunner(listInputs);
-        sr.playDays(257);
+        sr.playDays(256);
 
         log.info("Result after 256 days: {}", sr.getStatus());
     }

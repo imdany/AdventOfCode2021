@@ -12,15 +12,15 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        new Day1Challenge().run();
-//
-//        new Day2Challenge().run();
-//
-//        new Day3Challenge().run();
-//
-//        new Day4Challenge().run();
-//
-//        new Day5Challenge().run();
+        new Day1Challenge().run();
+
+        new Day2Challenge().run();
+
+        new Day3Challenge().run();
+
+        new Day4Challenge().run();
+
+        new Day5Challenge().run();
 
         new Day6Challenge().run();
     }

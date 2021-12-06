@@ -5,30 +5,19 @@ import org.junit.jupiter.api.Test;
 public class LanternfishTest {
 
     @Test
-    public void lanterfish_resetscycle(){
+    public void lanterfish_add_remove(){
 
-        Lanternfish l = new Lanternfish(6);
+        Lanternfish l = new Lanternfish(6, 0);
         assert (l.cycle ==6);
 
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==5);
+        l.add(1);
+        assert (l.population == 1);
 
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==4);
+        l.add(1);
+        assert (l.population == 2);
 
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==3);
+        l.remove(1);
+        assert (l.population == 1);
 
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==2);
-
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==1);
-
-        assert (l.advanceDay() == false);
-        assert (l.cycle ==0);
-
-        assert (l.advanceDay() == true);
-        assert (l.cycle ==6);
     }
 }
