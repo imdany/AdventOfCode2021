@@ -7,6 +7,7 @@ import com.imdany.AdventOfCode2021.day4.Day4Challenge;
 import com.imdany.AdventOfCode2021.day5.Day5Challenge;
 import com.imdany.AdventOfCode2021.day6.Day6Challenge;
 import com.imdany.AdventOfCode2021.day7.Day7Challenge;
+import com.imdany.AdventOfCode2021.day8.Day8Challenge;
 
 import java.io.IOException;
 
@@ -26,5 +27,8 @@ public class Main {
         new Day6Challenge().run("Challenge 6");
 
         new Day7Challenge().run("Challenge 7");
+
+        new Day8Challenge().run("Challenge 8");
+
     }
 }
