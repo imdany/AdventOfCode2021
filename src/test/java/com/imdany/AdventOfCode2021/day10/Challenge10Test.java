@@ -1,6 +1,6 @@
-package com.imdany.AdventOfCode2021.day9;
+package com.imdany.AdventOfCode2021.day10;
 
-import com.imdany.AdventOfCode2021.day8.EntriesChecker;
+import com.imdany.AdventOfCode2021.day9.SmokeMap;
 import com.imdany.utils.ResourceReader;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class Challenge9Test {
+public class Challenge10Test {
 
     ResourceReader resourceReader1;
     List<String> listInputs;
@@ -26,18 +26,12 @@ public class Challenge9Test {
 
     @Test
     public void challenge1Test() {
-        SmokeMap sm = new SmokeMap(listInputs);
-
-        assert(sm.map[0][0] == 2);
-        assert(sm.map[9][4] == 8);
-        assert(sm.riskLevel == 15);
+        assert(0==0);
     }
 
     @Test
     public void challenge2Test() {
-        SmokeMap sm = new SmokeMap(listInputs);
-
-        assert(sm.largestBasinSize == 1134);
+        assert(0==0);
     }
 
 
