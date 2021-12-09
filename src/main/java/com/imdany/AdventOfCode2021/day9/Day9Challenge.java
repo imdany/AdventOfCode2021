@@ -23,6 +23,10 @@ public class Day9Challenge extends Runner {
         ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day9/input1.txt");
         List<String> listInputs = resourceReader1.resourceToListString();
 
+        SmokeMap sm = new SmokeMap(listInputs);
+
+        log.info("Result: " + sm.riskLevel);
+
     }
 
     @Override
@@ -30,5 +34,8 @@ public class Day9Challenge extends Runner {
         log.info("Challenge 2");
         ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day9/input1.txt");
         List<String> listInputs = resourceReader1.resourceToListString();
+
+        SmokeMap sm = new SmokeMap(listInputs);
+        log.info("Result: " + sm.largestBasinSize);
     }
 }

@@ -26,12 +26,18 @@ public class Challenge9Test {
 
     @Test
     public void challenge1Test() {
-        assert(true);
+        SmokeMap sm = new SmokeMap(listInputs);
+
+        assert(sm.map[0][0] == 2);
+        assert(sm.map[9][4] == 8);
+        assert(sm.riskLevel == 15);
     }
 
     @Test
     public void challenge2Test() {
-        assert(true);
+        SmokeMap sm = new SmokeMap(listInputs);
+
+        assert(sm.largestBasinSize == 1134);
     }
 
 
