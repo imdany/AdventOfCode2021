@@ -19,11 +19,11 @@ Use of Stack:
 ```java
 Stack<Character> stack = new Stack<Character>();
 
-stack.push(x) // Adds new element to top of stack
+stack.push(x); // Adds new element to top of stack
 
-stack.pop() // Removes top element from stack
+stack.pop(); // Removes top element from stack
 
-stack.peek() // Checks top element without removing it
+stack.peek(); // Checks top element without removing it
 
 ```
 
