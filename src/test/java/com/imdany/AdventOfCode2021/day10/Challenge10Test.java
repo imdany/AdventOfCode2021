@@ -15,7 +15,7 @@ public class Challenge10Test {
 
     {
         try {
-            resourceReader1 = new ResourceReader("/AdventOfCode2021/day9/ex1.txt");
+            resourceReader1 = new ResourceReader("/AdventOfCode2021/day10/ex1.txt");
             listInputs = resourceReader1.resourceToListString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -26,12 +26,14 @@ public class Challenge10Test {
 
     @Test
     public void challenge1Test() {
-        assert(0==0);
+        SyntaxChecker sc = new SyntaxChecker(listInputs);
+        assert(sc.totalScore==26397);
     }
 
     @Test
     public void challenge2Test() {
-        assert(0==0);
+        SyntaxChecker sc = new SyntaxChecker(listInputs);
+        assert(sc.middleCost == 288957);
     }
 
 
