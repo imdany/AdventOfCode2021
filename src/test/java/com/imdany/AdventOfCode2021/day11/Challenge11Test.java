@@ -11,12 +11,12 @@ import java.util.List;
 public class Challenge11Test {
 
     ResourceReader resourceReader1;
-    List<String> listInputs;
+    int[][] inputGrid;
 
     {
         try {
-            resourceReader1 = new ResourceReader("/AdventOfCode2021/day10/ex1.txt");
-            listInputs = resourceReader1.resourceToListString();
+            resourceReader1 = new ResourceReader("/AdventOfCode2021/day11/ex2.txt");
+            inputGrid = resourceReader1.resourceToIntGrid();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -26,12 +26,23 @@ public class Challenge11Test {
 
     @Test
     public void challenge1Test() {
-        assert(0 == 0);
+        OctopusSimulation os = new OctopusSimulation(10, 10, inputGrid);
+        os.run(10);
+
+        assert(os.getFlahes() == 204);
+
+        OctopusSimulation os2 = new OctopusSimulation(10, 10, inputGrid);
+        os2.run(100);
+
+        assert(os2.getFlahes() == 1656);
     }
 
     @Test
     public void challenge2Test() {
-        assert(0 == 0);
+        OctopusSimulation os = new OctopusSimulation(10, 10, inputGrid);
+        os.runUntilSync();
+
+        assert(os.getDaysUntilSync() == 195);
     }
 
 

@@ -19,10 +19,26 @@ public class Day11Challenge extends Runner {
     @Override
     public void Challenge1() throws IOException {
         log.info("Challenge 1");
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day11/input1.txt");
+        int[][] grid = resourceReader1.resourceToIntGrid();
+
+        OctopusSimulation os = new OctopusSimulation(10, 10, grid);
+        os.run(100);
+
+        log.info("Result: {}", os.getFlahes());
+
     }
 
     @Override
     public void Challenge2() throws IOException {
         log.info("Challenge 2");
+
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day11/input1.txt");
+        int[][] grid = resourceReader1.resourceToIntGrid();
+
+        OctopusSimulation os = new OctopusSimulation(10, 10, grid);
+        os.runUntilSync();
+        log.info("Result: {}", os.getDaysUntilSync());
+
     }
 }

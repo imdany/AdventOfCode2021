@@ -57,4 +57,23 @@ public class ResourceReader {
 //        System.out.println("Elements loaded: " + data.size());
         return data;
     }
+
+    public int[][] resourceToIntGrid() throws IOException {
+        List<String> data = new ArrayList<String>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            data.add(line);
+        }
+        int sizeY = data.size();
+        int sizeX = data.get(0).length();
+
+        int[][] grid = new int[sizeX][sizeY];
+        for (int j = 0; j<sizeY;j++){
+            String[] l = data.get(j).split("");
+            for (int i = 0; i<sizeX;i++){
+                grid[i][j] = Integer.valueOf(l[i]);
+            }
+        }
+        return grid;
+    }
 }
