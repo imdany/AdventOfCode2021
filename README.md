@@ -34,3 +34,19 @@ Lambda expressions:
 Arrays.stream(cost).filter(x -> x !=0 ).toArray(Long[]::new);
 ```
 
+
+- Day 14
+Use of IntStream
+```java
+    IntStream.range(0, String.valueOf(this.currentSequence).length() - 1)
+        .mapToObj(i -> String.valueOf(this.currentSequence).substring(i, i + 2))
+
+    // Creates a range from 0 to X... and then you can map each of those elements to an object
+```
+
+Use of Compute in HashMap
+
+```java
+    map.compute(key, (key, v) -> v == null ? count : v + count);
+    // Allows you to add or update a key on a map
+```
