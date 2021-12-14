@@ -42,4 +42,16 @@ public class RouteTest {
 
         assert(rg.getTotalEndedRoutes() == 36);
     }
+
+    @Test
+    public void routeContains(){
+        HashMap<String, Node> nodeMap = NodeFactory.createNodes(list1);
+
+        Route r = new Route(nodeMap.get("A"), List.of(nodeMap.get("start"), nodeMap.get("b"), nodeMap.get("b")), nodeMap);
+        assert(!r.isNodeVisited(nodeMap.get("A")));
+        assert(r.isNodeVisited(nodeMap.get("b")));
+        assert(r.countNodes(nodeMap.get("b")) == 2);
+
+        assert(r.checkCountSmallNodes(2) == true);
+    }
 }

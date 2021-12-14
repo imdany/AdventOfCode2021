@@ -1,8 +1,8 @@
 package com.imdany.AdventOfCode2021.day12;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class RouteGenerator {
 
@@ -31,7 +31,7 @@ public class RouteGenerator {
 
         // Initial Route
         Route r = new Route(n1, List.of(), nodeMap);
-        List<Route> visitedRoutes = r.generateRoute(r, type);
+        List<Route> visitedRoutes = r.generateRoute(r);
 
         int size = visitedRoutes.size();
         int i = 0;
@@ -45,7 +45,7 @@ public class RouteGenerator {
                 endedRoutes.add(r1);
                 visitedRoutes.remove(i);
             } else {
-                List<Route> newRoutes = r1.generateRoute(r1, type);
+                List<Route> newRoutes = r1.generateRoute(r1);
                 if(newRoutes.size() == 0) {
                     invalidRoutes.add(r1);
                 }else {
@@ -54,11 +54,58 @@ public class RouteGenerator {
                 visitedRoutes.remove(i);
             }
 
+            visitedRoutes = this.validateRoutes(visitedRoutes, type);
+
             i++;
             size = visitedRoutes.size();
         }
 
         this.totalEndedRoutes = endedRoutes.size();
+    }
+
+    public List<Route> validateRoutes(List<Route> visitedRoutes, int type){
+        List<Route> validatedList = new ArrayList<>();
+
+        if(type == 0){
+            // Challenge 1 condition // Small Caves only once
+            for(Route r: visitedRoutes) {
+
+                if(!r.isNodeVisited(r.currentPosition)){
+                    // First time we are seeing it... add it
+                    validatedList.add(r);
+                } else{
+                    // If it's there, count how many times
+                    if(!r.currentPosition.isBig) {
+                        boolean c = r.checkCountSmallNodes(1);
+                        if(c == false){
+                            validatedList.add(r);
+                        }
+                    } else {
+                        validatedList.add(r);
+                    }
+                }
+            }
+        } else {
+            // Challenge 2 condition
+            for(Route r: visitedRoutes) {
+
+                if(!r.isNodeVisited(r.currentPosition)){
+                    // First time we are seeing it... add it
+                    validatedList.add(r);
+                } else{
+                    // If it's there, count how many times
+                    if(!r.currentPosition.isBig) {
+                        boolean c = r.checkCountSmallNodes(2);
+                        if(c == false){
+                            validatedList.add(r);
+                        }
+                    } else {
+                        validatedList.add(r);
+                    }
+                }
+            }
+        }
+        return validatedList;
     }
 
 }

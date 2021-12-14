@@ -26,4 +26,10 @@ public class Node {
             this.neighbor.add(name);
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "{" + name + "}";
+    }
 }

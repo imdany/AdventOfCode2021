@@ -35,6 +35,12 @@ public class Day12Challenge extends Runner {
     @Override
     public void Challenge2() throws IOException {
         log.info("Challenge 2");
-        // TODO
+        ResourceReader resourceReader1 = new ResourceReader("/AdventOfCode2021/day12/input1.txt");
+        List<String> list1 = resourceReader1.resourceToListString();;
+
+        HashMap<String, Node> nodeMap = NodeFactory.createNodes(list1);
+        RouteGenerator rg = new RouteGenerator(nodeMap, 1);
+
+        log.info("Result: {}", rg.getTotalEndedRoutes());
     }
 }

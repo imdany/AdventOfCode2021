@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 public class Route {
 
     Node currentPosition;
-    List<String> visitedPositions;
+    List<Node> visitedPositions;
     boolean isEnded;
     boolean isValid;
     boolean visitedSmallTwice;
     HashMap<String, Node> hashMap;
 
-    Route(Node currentPosition, List<String> visitedPositions, HashMap<String, Node> hashMap) {
+    Route(Node currentPosition, List<Node> visitedPositions, HashMap<String, Node> hashMap) {
         this.currentPosition = currentPosition;
         this.visitedPositions = visitedPositions;
         this.hashMap = hashMap;
@@ -22,7 +22,7 @@ public class Route {
     }
 
 
-    public List<Route> generateRoute(Route route, int type){
+    public List<Route> generateRoute(Route route){
         // Output list
         List<Route> routeList = new ArrayList<>();
 
@@ -33,51 +33,44 @@ public class Route {
         for (String i: neighbor ){
             if(i.equals("start")){
             }else {
-                if (route.visitedPositions.contains(i)) {
-                    if (hashMap.get(i).isBig) {
-                        result.add(i);
-                    } else {
-                        List<String> smallCaves = route.visitedPositions.stream().filter(x -> x.equals(i)).toList();
-                        if(type == 1 && !this.visitedSmallTwice) {
-                            if(smallCaves.size() == 1) {
-                                result.add(i);
-//                                this.visitedSmallTwice = true;
-                            }
-                        }
-
-                    }
-                } else {
-                    result.add(i);
-                }
+                result.add(i);
             }
         }
-
 
         // Create routes with the result as current node, and this this route.currentPosition as visited position
         for (String s: result) {
             Node n = this.hashMap.get(s);
-            List<String> visited = new LinkedList<String>(route.visitedPositions);
-            visited.add(route.currentPosition.name);
-
-            Map<String, Long> counted = visited.stream().filter(x -> !this.hashMap.get(x).isBig)
-                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            List<Node> visited = new LinkedList<Node>(route.visitedPositions);
+            visited.add(route.currentPosition);
 
             Route n1 = new Route(n, visited, this.hashMap);
-            for (Long v : counted.values()) {
-                if(v >= 2) {
-                    n1.visitedSmallTwice = true;
-                }
-            }
 
             if(n1.currentPosition.name.equals("end")) {
                 n1.isEnded = true;
             }
-
             routeList.add(n1);
         }
-        // if next position is "end"... set route to isEnded
-
         return routeList;
+    }
+
+    public boolean isNodeVisited(Node n){
+        if(this.visitedPositions.contains(n)) {
+            return true;
+        } else {
+         return false;
+        }
+    }
+
+    public long countNodes(Node n) {
+        return this.visitedPositions.stream().filter(x -> x == n).count();
+    }
+
+    public boolean checkCountSmallNodes(int n) {
+        Map<Node, Long> counted = this.visitedPositions.stream().filter(x -> !x.isBig && x != this.hashMap.get("start"))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        counted.values().removeIf(l -> l < n);
+        return counted.keySet().size() >= 1 ? true : false;
+
     }
 
     @Override
