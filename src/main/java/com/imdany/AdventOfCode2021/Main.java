@@ -6,6 +6,8 @@ import com.imdany.AdventOfCode2021.day11.Day11Challenge;
 import com.imdany.AdventOfCode2021.day12.Day12Challenge;
 import com.imdany.AdventOfCode2021.day13.Day13Challenge;
 import com.imdany.AdventOfCode2021.day14.Day14Challenge;
+import com.imdany.AdventOfCode2021.day15.Day15Challenge;
+import com.imdany.AdventOfCode2021.day16.Day16Challenge;
 import com.imdany.AdventOfCode2021.day2.Day2Challenge;
 import com.imdany.AdventOfCode2021.day3.Day3Challenge;
 import com.imdany.AdventOfCode2021.day4.Day4Challenge;
@@ -47,6 +49,10 @@ public class Main {
         new Day13Challenge().run("Day 13");
 
         new Day14Challenge().run("Day 14");
+
+        new Day15Challenge().run("Day 15");
+
+        new Day16Challenge().run("Day 16");
 
     }
 }
